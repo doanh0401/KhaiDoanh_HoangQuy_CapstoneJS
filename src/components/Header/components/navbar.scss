@@ -1,0 +1,80 @@
+.page-header {
+    width: 100%;
+    margin: 0 auto;
+    background: url(../../../../public/img/bg-top.png) repeat-x scroll left bottom transparent;
+    background-size: 10px 135px;
+    height: 135px;
+
+    .page-header-container {
+        position: relative;
+        z-index: 2000;
+    };
+
+    nav.navbar.navbar-expand-lg.navbar-light {
+        width: 980px;
+        margin: 0px auto;
+    };
+
+    .navbar-expand-lg .navbar-collapse {
+        flex-basis: auto;
+        left: 18%;
+        position: absolute;
+        top: 59%;
+    }
+    .logo {
+        display: block;
+        min-width: 100px;
+        min-height: 44px;
+        text-align: center;
+        margin-top: 32px;
+    }
+    .dropdown-menu.show {
+        background: url(../../../../public/img/bg_menu_hover.png) repeat scroll center center rgba(0, 0, 0, 0);
+        left: 0;
+        padding: 3px;
+        position: absolute;
+        min-width: 190px;
+        .dropdown-item{
+            color: #fff;
+            transition: all 0.3s;
+        }
+        .dropdown-item:focus, .dropdown-item:hover {
+            color: red;
+            text-decoration: none;
+            background-color: transparent;
+        }
+    }
+    .navbar-nav {
+        display: flex;
+        padding-left: 0;
+        margin-bottom: 0;
+        list-style: none;
+        color: rgb(34, 34, 34);
+        font-family: Verdana,Arial,sans-serif;
+        font-weight: bold;
+        line-height: 30px;
+        text-decoration: none;
+    }
+    .hot-job {
+        display: inline-block;
+        vertical-align: top;
+        position: relative;
+        left: -3px;
+    }
+    .header-search {
+        display: block;
+        position: absolute;
+        top: 15px;
+        right: 0;
+        width: 25%;
+        padding: 0;
+        text-align: right;
+        div {
+            display: inline-block;
+        }
+        .header-search-left {
+            position: relative;
+            top: 15px;
+        }
+    }
+}

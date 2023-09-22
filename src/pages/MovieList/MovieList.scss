@@ -1,0 +1,14 @@
+.main {
+  width: 980px;
+  margin: 0px auto;
+  margin-top: 30px;
+
+  .category-title {
+    border-bottom: 3px solid #241d1e;
+    margin-bottom: 35px;
+  }
+  .card-img {
+    height: 260px;
+    object-fit: cover;
+  }
+}

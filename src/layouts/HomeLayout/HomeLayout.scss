@@ -1,0 +1,78 @@
+.wrapper {
+    min-width: 320px;
+    min-height: 100%;
+    margin: 0 auto;
+    background: #fdfcf0;
+    .mtw_banner_top {
+        background: #fdfcf0 none repeat scroll 0 0;
+        margin: 0 auto;
+        display: inline;
+    };
+    .mtw_banner_top_content {
+        width: 980px;
+        margin: 0 auto;
+        position: relative;
+    };
+    .header-language-background {
+        height: 29px;
+        text-transform: uppercase;
+        a {
+            color: #666;
+        }
+        a:hover {
+            color: rgb(206, 18, 18);
+            text-decoration: none;
+        }
+    }
+    .header-container {
+        height: 29px;
+        margin: 0 auto;
+        width: 980px;
+    }
+    .header-language-right {
+        text-align: right;
+        display: inline-block;
+        width: 100%;
+    }
+    .header-career {
+        margin-right: 15px;
+        padding-top: 5px;
+    }
+    .header-language-right .links li, .header-language-right > p, .header-language-right > div {
+        display: inline-block;
+    };
+    .mn-career, .mn-newsoffer, .mn-myticket, .mn-login {
+        position: relative;
+        margin-left: 35px;
+    };
+    .mn-newsoffer::before {
+        width: 25px;
+        content: "";
+        background-image: url(../../../public/img/icon_promotion25.png);
+        background-repeat: no-repeat;
+        position: absolute;
+        left: -27px;
+        top: 3px;
+        height: 25px;
+    };
+    .mn-myticket::before {
+        width: 25px;
+        content: "";
+        background-image: url(../../../public/img/icon_ticket25.png);
+        background-repeat: no-repeat;
+        position: absolute;
+        left: -27px;
+        top: 1px;
+        height: 25px;
+    };
+    .mn-login::before {
+        width: 25px;
+        content: "";
+        background-image: url(../../../public/img/icon_login25.png);
+        background-repeat: no-repeat;
+        position: absolute;
+        left: -24px;
+        top: -4px;
+        height: 25px;
+    }
+}
