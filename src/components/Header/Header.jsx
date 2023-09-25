@@ -1,7 +1,9 @@
 import React from 'react'
 import Navbar from './components/Navbar'
+import { useNavigate } from 'react-router-dom'
 
 export default function Header() {
+  const navigate = useNavigate();
   return (
     <div className="mtw_banner_top">
       <div className="mtw_banner_top_content">
@@ -21,7 +23,7 @@ export default function Header() {
             <div className='header-top-account'>
               <div className='account-header-wrapper mn-login'>
                   <a href="" className='topskip-link skip-account'>
-                    <span className='label'>Đăng nhập/ Đăng ký</span>
+                    <span onClick={() => navigate("/login")} className='label'>Đăng nhập/ Đăng ký</span>
                   </a>
               </div>
             </div>        
