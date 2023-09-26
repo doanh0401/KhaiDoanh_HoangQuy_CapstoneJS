@@ -17,7 +17,7 @@ export default function Showtime() {
       return (
         <a
           key={element.maHeThongRap}
-          className={`nav-link text-capitalize ${idx === 0 && "active"}`}
+          className={`tab-list nav-link text-capitalize ${idx === 0 && "active"}`}
           data-toggle="pill"
           href={`#${element.maHeThongRap}`}
           role="tab"

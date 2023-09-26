@@ -9,7 +9,6 @@ export default function MovieList() {
   useEffect(() => {
     fetchMovieList();
   }, []);
-  const navigate = useNavigate();
 
   const fetchMovieList = async () => {
     const result = await movieService.fecthMovieListApi();
@@ -18,7 +17,7 @@ export default function MovieList() {
   };
 
   const handleBooking = (movieId) => {
-    navigate(`/movie-detail/${movieId}`)
+    navigate(`/movie-detail/${movieId}`);
   };
 
   const renderMovieList = () => {
@@ -26,35 +25,44 @@ export default function MovieList() {
       return (
         <div className="col-12 col-md-6 col-lg-3">
           <div className="movie-item">
-          <div className="movie-pic">
-            <img 
-              src={element.hinhAnh}
-              alt="..."
-            />
-<<<<<<< HEAD
-            <div style={{ background: "#fdfcf0" }} className="card-body">
-              <h2 style={{ fontSize: 20 }} className="card-title text-center">
-                {element.tenPhim}
-              </h2>
-              <p></p>
-              <button className="btn btn-success ">
-                <i class="fa-regular fa-thumbs-up"></i> Like: {element.danhGia}
-              </button>
-              <button onClick={()=>navigate(`/movie-detail/${element.maPhim}`)} className="btn btn-danger ml-lg-2">Đặt vé</button>
-=======
-          </div>
-          <div className="movie-txt">
-            <h3>{element.tenPhim}</h3>
-          </div>
-          <div className="movie-over">
-              <p>{element.moTa}</p>
-              <span className="atc" style={{display: "block"}}>...</span>
-            <div className="button-group">
-              <button onClick={() => navigate(`/movie-detail/${element.maPhim}`)}>Chi Tiết</button>
-              <button onClick={() => handleBooking(element.maPhim)}>Đặt vé</button>
->>>>>>> bfcd9434559a7d0989e8483be9d8e5786d4dfe6f
+            <div className="movie-pic">
+              <img src={element.hinhAnh} alt="..." />
+              <div style={{ background: "#fdfcf0" }} className="card-body">
+                <h2 style={{ fontSize: 20 }} className="card-title text-center">
+                  {element.tenPhim}
+                </h2>
+                <p></p>
+                <button className="btn btn-success ">
+                  <i class="fa-regular fa-thumbs-up"></i> Like:{" "}
+                  {element.danhGia}
+                </button>
+                <button
+                  onClick={() => navigate(`/movie-detail/${element.maPhim}`)}
+                  className="btn btn-danger ml-lg-2"
+                >
+                  Đặt vé
+                </button>
+              </div>
+              <div className="movie-txt">
+                <h3>{element.tenPhim}</h3>
+              </div>
+              <div className="movie-over">
+                <p>{element.moTa}</p>
+                <span className="atc" style={{ display: "block" }}>
+                  ...
+                </span>
+                <div className="button-group">
+                  <button
+                    onClick={() => navigate(`/movie-detail/${element.maPhim}`)}
+                  >
+                    Chi Tiết
+                  </button>
+                  <button onClick={() => handleBooking(element.maPhim)}>
+                    Đặt vé
+                  </button>
+                </div>
+              </div>
             </div>
-          </div>
           </div>
         </div>
       );
@@ -68,7 +76,7 @@ export default function MovieList() {
           <h1>Phim Đang Chiếu</h1>
         </div>
         <div className="py-5">
-          <div className="row" style={{margin: "none"}}>
+          <div className="row" style={{ margin: "none" }}>
             {renderMovieList()}
           </div>
         </div>
