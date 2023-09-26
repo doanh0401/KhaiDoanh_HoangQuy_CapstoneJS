@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "./MovieList.scss";
 import { movieService } from "../../services/movie";
+import { useNavigate } from "react-router-dom";
 export default function MovieList() {
   const [movieList, setMovieList] = useState([]);
 
   useEffect(() => {
     fetchMovieList();
   }, []);
+  const navigate = useNavigate();
 
   const fetchMovieList = async () => {
     const result = await movieService.fecthMovieListApi();
@@ -32,7 +34,7 @@ export default function MovieList() {
               <button className="btn btn-success ">
                 <i class="fa-regular fa-thumbs-up"></i> Like: {element.danhGia}
               </button>
-              <button className="btn btn-danger ml-lg-2">Đặt vé</button>
+              <button onClick={()=>navigate(`/movie-detail/${element.maPhim}`)} className="btn btn-danger ml-lg-2">Đặt vé</button>
             </div>
           </div>
         </div>
