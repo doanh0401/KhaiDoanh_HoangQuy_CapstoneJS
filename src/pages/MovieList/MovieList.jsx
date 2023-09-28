@@ -21,6 +21,7 @@ export default function MovieList() {
 
   const handleBooking = (movieId) => {
     navigate(`/movie-detail/${movieId}`);
+    navigate(`/movie-detail/${movieId}`);
   };
 
   const handleChange = (page) => {

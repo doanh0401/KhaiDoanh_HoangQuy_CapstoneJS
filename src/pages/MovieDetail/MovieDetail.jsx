@@ -1,6 +1,7 @@
-import React from 'react'
-import Detail from './components/Detail'
-import Showtimes from './components/ShowTimes'
+import React from "react";
+import Detail from "./components/Detail/Detail";
+import Showtime from "./components/Showtime/Showtime";
+
 
 export default function MovieDetail() {
   return (
@@ -11,10 +12,14 @@ export default function MovieDetail() {
             <Detail />
           </div>
           <div className="col-12 mt-5">
-            <Showtimes />
+
+            <Showtime />
+
+
           </div>
         </div>
       </div>
     </div>
-  )
+
+  );
 }
