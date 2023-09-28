@@ -10,6 +10,7 @@ import { ConfigProvider } from "antd";
 
 import { Provider } from "react-redux";
 import { store } from "./store/config";
+import { ConfigProvider } from "antd";
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -27,9 +28,11 @@ root.render(
 
 
   
+<ConfigProvider>
 <Provider store={store}>
     <App />
-</Provider>);
+</Provider>
+</ConfigProvider>);
 
 
 // If you want to start measuring performance in your app, pass a function
