@@ -1,22 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { movieService } from "../../../../services/movie";
-import Slider from "react-slick";
+import "./Banner.scss"
 
 export default function Banner() {
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-  };
-
   const [banner, setBanner] = useState([]);
 
   useEffect(() => {
     fetchBanner();
-  });
+  },[]);
 
   const fetchBanner = async () => {
     const result = await movieService.fetchBannerApi();
@@ -27,11 +18,12 @@ export default function Banner() {
     return banner.map((element,index) => {
       return (
         <div className={`carousel-item ${index === 0 && "active"}`}>
-        <img src={element.hinhAnh} className="d-block w-100" alt="..." height="700px" />
+        <img src={element.hinhAnh} className="d-block w-100 img-fluid imgbanner" alt="..." />
       </div>
       );
     });
   };
+
   return (
     <div className="bd-example">
       <div
