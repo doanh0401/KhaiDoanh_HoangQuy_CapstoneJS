@@ -7,6 +7,8 @@ import MovieList from '../pages/MovieList/MovieList'
 import AdminLayout from '../layouts/AdminLayout/AdminLayout'
 import MovieManagement from '../pages/MovieManagement/MovieManagement'
 import Login from '../pages/Login/Login'
+import Booking from '../pages/Booking/Booking'
+import AuthGuard from '../guards/AuthGuard'
 export default function Router() {
 
   const routing = useRoutes([
@@ -26,6 +28,10 @@ export default function Router() {
           path: "/movie-list",
           element: <MovieList/>
         },
+        {
+          path: "/booking/:id",
+          element: <Booking />
+        }
       ]
     },
     {
