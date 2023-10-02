@@ -17,7 +17,7 @@ export default function Banner() {
   const renderBanner = () => {
     return banner.map((element,index) => {
       return (
-        <div className={`carousel-item ${index === 0 && "active"}`}>
+        <div key={index} className={`carousel-item ${index === 0 && "active"}`}>
         <img src={element.hinhAnh} className="d-block w-100 img-fluid imgbanner" alt="..." />
       </div>
       );
