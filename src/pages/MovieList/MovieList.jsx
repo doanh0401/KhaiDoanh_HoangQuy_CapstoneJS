@@ -13,7 +13,7 @@ export default function MovieList() {
   }, []);
 
   const fetchMovieList = async () => {
-    const result = await movieService.fecthMovieListApi();
+    const result = await movieService.fecthMovieListApi("GP06");
     setMovieList(result.data.content);
   };
 
