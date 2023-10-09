@@ -96,7 +96,7 @@ export default function AdminLayout() {
           </Menu.Item>
           <SubMenu key="sub1" icon={<FileOutlined />} title="Films">
             <Menu.Item key="10" icon={<FileOutlined />}>
-              <NavLink to="/admin/film">Films</NavLink>
+              <NavLink to={"/admin/film"}>Films</NavLink>
             </Menu.Item>
             <Menu.Item key="11" icon={<FileOutlined />}>
               <NavLink to="/admin/film/addnew">Add New</NavLink>
