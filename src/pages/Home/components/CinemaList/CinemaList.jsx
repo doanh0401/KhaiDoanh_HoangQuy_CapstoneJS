@@ -21,6 +21,7 @@ export default function () {
     const result = await cinemaService.fetchCinemaApi();
     setCinema(result.data.content);
   };
+  
 
   const renderCinemaBrand = () => {
     return cinema.map((element) => {

@@ -16,6 +16,13 @@ class TicketService {
       data,
     })
   }
+  taoLichChieuApi(thongTinLichChieu){
+    return request({
+      url:`/QuanLyDatVe/TaoLichChieu`,
+      method: "POST",
+      data: thongTinLichChieu,
+    })
+  }
 }
-
+  
 export const ticketService = new TicketService();
