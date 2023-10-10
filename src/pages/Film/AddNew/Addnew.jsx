@@ -16,11 +16,19 @@ import moment from "moment";
 import { redirect } from "react-router-dom";
 import { adminService } from "../../../services/admin";
 import { useDispatch } from "react-redux";
+import * as Yup from "yup";
+
 const Addnew = () => {
   const [componentSize, setComponentSize] = useState("default");
-  const [imgSrc, setImgSrc] = useState("")
+  const [imgSrc, setImgSrc] = useState("");
   const dispatch = useDispatch();
-
+  const AddNewFilm = Yup.object().shape({
+    tenPhim: Yup.string().required("Tên phim không được để trống!").matches(/^[ aAàÀảẢãÃáÁạẠăĂằẰẳẲẵẴắẮặẶâÂầẦẩẨẫẪấẤậẬbBcCdDđĐeEèÈẻẺẽẼéÉẹẸêÊềỀểỂễỄếẾệỆfFgGhHiIìÌỉỈĩĨíÍịỊjJkKlLmMnNoOòÒỏỎõÕóÓọỌôÔồỒổỔỗỖốỐộỘơƠờỜởỞỡỠớỚợỢpPqQrRsStTuUùÙủỦũŨúÚụỤưƯừỪửỬữỮứỨựỰvVwWxXyYỳỲỷỶỹỸýÝỵỴzZ]+$/,"Vui lòng nhập đúng định dạng!"),
+    trailer:Yup.string().required("Trailer không được để trống!"),
+    moTa:Yup.string().required("Mo tả không được để trống!"),
+    ngayKhoiChieu:Yup.string().required("Ngày khởi chiếu không được để trống!"),
+    danhGia:Yup.number().required("Đánh giá không được để trống!").min(1,"Đánh giá phải lớn hơn 1").max(10,"Đánh giá phải nhỏ hơn 10"),
+  });
   const formik = useFormik({
     initialValues: {
       tenPhim: "",
@@ -33,18 +41,18 @@ const Addnew = () => {
       danhGia: 0,
       hinhAnh: {},
     },
+    validationSchema: AddNewFilm,
     onSubmit: (value) => {
-        value.maNhom= "GP01";
+      value.maNhom = "GP01";
       let formData = new FormData();
-      for(let key in value){
-        if(key === 'hinhAnh'){
-          formData.append('File', value[key], value[key].name)
-        }else{
+      for (let key in value) {
+        if (key === "hinhAnh") {
+          formData.append("File", value[key], value[key].name);
+        } else {
           formData.append(key, value[key]);
-            
         }
       }
-      console.log(formData.get('File'));
+      console.log(formData.get("File"));
       dispatch(themPhimUpLoadHinh(formData));
     },
   });
@@ -62,27 +70,31 @@ const Addnew = () => {
       formik.setFieldValue(name, value);
     };
   };
-  const handleChangeFile = (e) =>{
+  const handleChangeFile = (e) => {
     let file = e.target.files[0];
-    if(file.type === 'image/jpeg' || file.type === 'image/jpg' || file.type === 'image/gif' || file.type === 'image/png'){
-        let reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = (e)=>{
-            setImgSrc(e.target.result);
-    }
-    formik.setFieldValue('hinhAnh', file)
+    if (
+      file.type === "image/jpeg" ||
+      file.type === "image/jpg" ||
+      file.type === "image/gif" ||
+      file.type === "image/png"
+    ) {
+      let reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = (e) => {
+        setImgSrc(e.target.result);
+      };
+      formik.setFieldValue("hinhAnh", file);
     }
   };
-  const themPhimUpLoadHinh = async (formData) =>{
-        try{
-            const result = await adminService.themPhimUpLoadHinhApi(formData);
-            alert('Thêm phim thành công!')
-            console.log(result);
-        }
-        catch (errors){
-            console.log(errors.response?.data);
-        }
+  const themPhimUpLoadHinh = async (formData) => {
+    try {
+      const result = await adminService.themPhimUpLoadHinhApi(formData);
+      alert("Thêm phim thành công!");
+      console.log(result);
+    } catch (errors) {
+      console.log(errors.response?.data);
     }
+  };
 
   const onFormLayoutChange = ({ size }) => {
     setComponentSize(size);
@@ -117,18 +129,30 @@ const Addnew = () => {
         </Form.Item>
         <Form.Item label="Tên phim">
           <Input name="tenPhim" onChange={formik.handleChange} />
+          {formik.errors.tenPhim && formik.touched.tenPhim && (
+            <span className='form-label text-danger'>{formik.errors.tenPhim}</span>
+          )}
         </Form.Item>
         <Form.Item label="Trailer">
           <Input name="trailer" onChange={formik.handleChange} />
+          {formik.errors.trailer && formik.touched.trailer && (
+            <span className='form-label text-danger'>{formik.errors.trailer}</span>
+          )}
         </Form.Item>
         <Form.Item label="Mô tả">
           <Input name="moTa" onChange={formik.handleChange} />
+          {formik.errors.moTa && formik.touched.moTa && (
+            <span className='form-label text-danger'>{formik.errors.moTa}</span>
+          )}
         </Form.Item>
         <Form.Item label="Ngày khởi chiếu">
           <DatePicker
             format={"DD//MM/YYYY"}
             onChange={handleChangeDatePicker}
           />
+          {formik.errors.ngayKhoiChieu && formik.touched.ngayKhoiChieu && (
+            <span className='form-label text-danger'>{formik.errors.ngayKhoiChieu}</span>
+          )}
         </Form.Item>
         <Form.Item label="Đang chiếu">
           <Switch onChange={handleChangeSwitch("dangChieu")} />
@@ -145,10 +169,17 @@ const Addnew = () => {
             min={1}
             max={10}
           />
+           {formik.errors.danhGia && formik.touched.danhGia && (
+            <span className='form-label text-danger'>{formik.errors.danhGia}</span>
+          )}
         </Form.Item>
         <Form.Item label="Hình ảnh">
-          <input type="file" onChange={handleChangeFile} accept="image/jpeg, image/jpg, image/gif, image/png" />
-          <br/>
+          <input
+            type="file"
+            onChange={handleChangeFile}
+            accept="image/jpeg, image/jpg, image/gif, image/png"
+          />
+          <br />
           <img width={200} height={150} src={imgSrc} alt="" />
         </Form.Item>
         <Form.Item label="">

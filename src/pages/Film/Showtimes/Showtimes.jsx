@@ -14,9 +14,16 @@ import { useFormik } from "formik";
 import { useParams } from "react-router-dom";
 import { ticketService } from "../../../services/tickect";
 import moment from "moment";
+import * as Yup from "yup";
+
 export default function Showtimes() {
   const { id } = useParams();
   const {tenphim} = useParams();
+  const TaoLichChieu = Yup.object().shape({
+    ngayChieuGioChieu:Yup.string().required("Ngày chiếu, giờ chiếu không được để trống!"),
+    maRap:Yup.string().required("Hệ thống rạp và cụm rạp không được để trống!"),
+    giaVe:Yup.number().required("Giá vé không được để trống!").min(75000,"Giá vé phải lớn hơn 75000").max(150000,"Giá vé phải nhỏ hơn 150000"),
+  })
   const formik = useFormik({
     initialValues: {
       maPhim: id,
@@ -24,6 +31,7 @@ export default function Showtimes() {
       maRap: "",
       giaVe: "",
     },
+    validationSchema:TaoLichChieu,
     onSubmit: async(values) => {
       console.log(values);
       try{
@@ -112,6 +120,9 @@ export default function Showtimes() {
           onChange={handleChangeHeThongRap}
           placeholder="Chọn hệ thống rạp"
         />
+        {formik.errors.maRap && formik.touched.maRap && (
+            <span className='form-label text-danger'>{formik.errors.maRap}</span>
+          )}
       </Form.Item>
       <Form.Item label="Cụm rạp">
         <Select
@@ -122,6 +133,9 @@ export default function Showtimes() {
           onChange={handleChangeCumRap}
           placeholder="Cụm rạp"
         />
+        {formik.errors.maRap && formik.touched.maRap && (
+            <span className='form-label text-danger'>{formik.errors.maRap}</span>
+          )}
       </Form.Item>
       <Form.Item label="Ngày chiếu giờ chiếu">
         <DatePicker
@@ -130,9 +144,15 @@ export default function Showtimes() {
           onChange={onchangeDate}
           onOk={onOk}
         ></DatePicker>
+        {formik.errors.ngayChieuGioChieu && formik.touched.ngayChieuGioChieu && (
+            <span className='form-label text-danger'>{formik.errors.ngayChieuGioChieu}</span>
+          )}
       </Form.Item>
       <Form.Item label="Giá vé">
         <InputNumber min={75000} max={150000} onChange={onchangeInputNumber} />
+        {formik.errors.giaVe && formik.touched.giaVe && (
+            <span className='form-label text-danger'>{formik.errors.giaVe}</span>
+          )}
       </Form.Item>
       <Form.Item label="Chức năng">
         <Button htmlType="submit">Tạo lịch chiếu</Button>
