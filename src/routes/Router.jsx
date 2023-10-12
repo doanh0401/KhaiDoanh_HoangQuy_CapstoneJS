@@ -3,7 +3,7 @@ import { useRoutes } from 'react-router-dom'
 import Home from '../pages/Home/Home'
 import HomeLayout from '../layouts/HomeLayout/HomeLayout'
 import MovieDetail from '../pages/MovieDetail/MovieDetail'
-import MovieList from '../pages/MovieList/MovieList'
+import UserProfile from '../pages/UserProfile/UserProfile'
 import AdminLayout from '../layouts/AdminLayout/AdminLayout'
 import MovieManagement from '../pages/MovieManagement/MovieManagement'
 import Login from '../pages/Login/Login'
@@ -25,12 +25,14 @@ export default function Router() {
           element: <MovieDetail/>
         },
         {
-          path: "/movie-list",
-          element: <MovieList/>
+          path: "/booking/:id",
+          element: <AuthGuard>
+                    <Booking />
+                  </AuthGuard>
         },
         {
-          path: "/booking/:id",
-          element: <Booking />
+          path: "/profile",
+          element: <UserProfile />
         }
       ]
     },

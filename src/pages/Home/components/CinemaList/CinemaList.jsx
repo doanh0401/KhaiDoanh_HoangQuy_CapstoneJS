@@ -38,22 +38,22 @@ export default function () {
 
   const handleChange = (_, newValue) => {
     setValue(newValue);
-    if(newValue = "BHDStar") {
+    if(newValue === "BHDStar") {
       handleChange1(_,"bhd-star-cineplex-pham-hung");
     }
-    if(newValue = "CGV") {
+    if(newValue === "CGV") {
       handleChange1(_,"cgv-aeon-tan-phu")
     }
-    if(newValue = "CineStar") {
+    if(newValue === "CineStar") {
       handleChange1(_,"cns-hai-ba-trung");
     }
-    if(newValue = "LotteCinima") {
+    if(newValue === "LotteCinima") {
       handleChange1(_,"lotte-cong-hoa");
     }
-    if(newValue = "MegaGS") {
+    if(newValue === "MegaGS") {
       handleChange1(_,"megags-cao-thang");
     }
-    if(newValue = "Galaxy") {
+    if(newValue === "Galaxy") {
       handleChange1(_,"glx-huynh-tan-phat");
     }
   };
@@ -113,9 +113,9 @@ export default function () {
   };
 
   const renderColumn3Item = (data) => {
-    return data.map((element,idx) => {
+    return data.map((element) => {
       return (
-        <div key={idx} className="itemContainer">
+        <div key={element.maPhim} className="itemContainer">
           <img src={element.hinhAnh} alt={element.tenPhim} />
           <div className="time">
             <Typography variant="h2">
