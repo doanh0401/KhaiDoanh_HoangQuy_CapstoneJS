@@ -15,6 +15,20 @@ class UserService {
             data,
         })
     }
+    fetchUserInfoApi(data) {
+        return request({
+            url: `/QuanLyNguoiDung/ThongTinTaiKhoan`,
+            method: "POST",
+            data,
+        })
+    }
+    updateUserApi(data) {
+        return request({
+            url: `/QuanLyNguoiDung/CapNhatThongTinNguoiDung`,
+            method: "PUT",
+            data,
+        })
+    }
 }
 
 export const userService = new UserService();

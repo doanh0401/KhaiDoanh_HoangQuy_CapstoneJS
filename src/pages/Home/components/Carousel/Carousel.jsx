@@ -10,15 +10,17 @@ export default function Carousel() {
   const [movieList, setMovieList] = useState([]);
   const [isNowPlaying, setIsNowPlaying] = useState();
   const userState = useSelector((state) => state.userReducer);
+  const [activeButton, setActiveButton] = useState("all");
 
   useEffect(() => {
     fetchMovieList();
     fetchMovieListPerPage();
   }, []);
 
-  const handleNowPlaying = (key) => {
+  const handleNowPlaying = (key, button = "all") => {
     setIsNowPlaying(key);
-  }
+    setActiveButton(button);
+  };
 
   const fetchMovieList = async () => {
     const result = await movieService.fecthMovieListApi("GP01");
@@ -58,7 +60,7 @@ export default function Carousel() {
       }
     });
 
-    return renderData .map((element) => {
+    return renderData.map((element) => {
       return (
         <div
           key={element.maPhim}
@@ -89,35 +91,35 @@ export default function Carousel() {
     <div className="container mt-5 text-center">
       <h2 className="text-center">Phim sắp chiếu</h2>
       <div className="btn-group btn-group-toggle" data-toggle="buttons">
-            <button
-              onClick={() => handleNowPlaying()}
-              className="px-3 btn btn-secondary btn-sm mr-1 text-capitalize active"
-            >
-              Tất cả
-            </button>
-            <button
-              onClick={() => handleNowPlaying(true)}
-              className="btn btn-secondary mr-1 text-capitalize"
-            >
-              Đang chiếu
-            </button>
-            <button
-              onClick={() => handleNowPlaying(false)}
-              className="btn btn-secondary btn-sm text-capitalize"
-            >
-              Sắp chiếu
-            </button>
-          </div>
+        <button
+          onClick={() => handleNowPlaying()}
+          className={`px-3 btn btn-${activeButton === 'all' ? 'primary' : 'secondary'} btn-sm mr-1 text-capitalize`}
+        >
+          Tất cả
+        </button>
+        <button
+          onClick={() => handleNowPlaying(true,'nowPlaying')}
+          className={`px-3 btn btn-${activeButton === 'nowPlaying' ? 'primary' : 'secondary'} btn-sm mr-1 text-capitalize`}
+        >
+          Đang chiếu
+        </button>
+        <button
+          onClick={() => handleNowPlaying(false,'comingSoon')}
+          className={`px-3 btn btn-${activeButton === 'comingSoon' ? 'primary' : 'secondary'} btn-sm mr-1 text-capitalize`}
+        >
+          Sắp chiếu
+        </button>
+      </div>
       <div className="py-5">
         <div className="row justify-content-center">{renderMovieList()}</div>
         <div className="ant-pagination">
-        <Pagination
-          onChange={handleChange}
-          total={movieList.length}
-          defaultPageSize={8}
-          defaultCurrent={currentPage}
-          current={currentPage}
-        />
+          <Pagination
+            onChange={handleChange}
+            total={movieList.length}
+            defaultPageSize={8}
+            defaultCurrent={currentPage}
+            current={currentPage}
+          />
         </div>
       </div>
     </div>

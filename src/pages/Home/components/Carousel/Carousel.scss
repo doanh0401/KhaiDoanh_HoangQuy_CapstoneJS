@@ -74,6 +74,7 @@ img {
 }
 
 .ant-pagination {
+    color: red;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -81,10 +82,11 @@ img {
     .ant-pagination-item {
       &.ant-pagination-item-active {
         background-color: red;
+        border: 1px solid red;
         color: white;
       }
-  
-      border: 1px solid red;
+      background-color: grey;
+      border: 1px solid grey;
       margin: 0 4px;
       width: 24px;
       height: 24px;
@@ -96,6 +98,7 @@ img {
   
       a {
         color: red;
+        visibility: hidden;
       }
     }
   

@@ -34,7 +34,7 @@ export default function Header() {
               {/* <img src={avatar} className="avatar" alt="Avatar" /> */}
               Hello {userState.userInfo.hoTen} <b className="caret"></b>
             </a>
-            <div className="dropdown-menu w-25">
+            <div className="dropdown-menu w-25" style={{zIndex:9999}} >
               <NavLink to="/profile" className="dropdown-item">
                 <i className="fa-regular fa-user"></i> Profile
               </NavLink>
