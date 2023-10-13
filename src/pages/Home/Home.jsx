@@ -6,8 +6,8 @@ import CinemaList from './components/CinemaList/CinemaList'
 export default function Home() {
   return (
       <>
-        <Banner />
-        <Carousel />
+        <Banner /> 
+        <Carousel /> 
         <CinemaList />
       </>
   )

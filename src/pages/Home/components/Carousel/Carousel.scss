@@ -1,162 +1,181 @@
-*{
-    font-family: 'Poppins', sans-serif;
-     -webkit-user-select: none;
-    -moz-user-select: -moz-none;
-    -o-user-select: none;
-    user-select: none;
+* {
+  font-family: "Poppins", sans-serif;
+  -webkit-user-select: none;
+  -moz-user-select: -moz-none;
+  -o-user-select: none;
+  user-select: none;
 }
 img {
-      -webkit-user-drag: none;
-      -moz-user-drag: none;
-      -o-user-drag: none;
-      user-drag: none;
+  -webkit-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
 }
 img {
-    pointer-events: none;
+  pointer-events: none;
 }
-.movie_card{
-    padding: 0 !important;
-    width: 16rem;
-    margin:12px; 
-    border-radius: 10px;
-    box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 15px 0 rgba(0, 0, 0, 0.19);
+.movie_card {
+  padding: 0 !important;
+  width: 16rem;
+  margin: 12px;
+  border-radius: 10px;
+  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 15px 0 rgba(0, 0, 0, 0.19);
 }
-.movie_card img{
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    height: 19rem;
+.movie_card img {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  height: 19rem;
 }
-.movie_info{
-    color: #5e5c5c;
-}
-
-.movie_info i{
-    font-size: 20px;
-}
-.card-title{
-    width: 80%;
-    height: 4rem;
-}
-.play_button{
-    background-color: #ff3d49;
-       position: absolute;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    right: 20px;
-    bottom: 111px;
-    font-size: 27px;
-    padding-left: 21px;
-    padding-top: 16px;
-    color: #FFFFFF;
-    cursor: pointer;
+.movie_info {
+  color: #5e5c5c;
 }
 
-.credits{
-    margin-top: 20px;
-    margin-bottom: 20px;
-    border-radius: 8px;
-    border: 2px solid #8e24aa;
-    font-size: 18px;
+.movie_info i {
+  font-size: 20px;
 }
-.credits .card-body{
-    padding: 0;
+.card-title {
+  width: 80%;
+  height: 4rem;
 }
-.credits p{
-    padding-top: 15px;
-    padding-left: 18px;
+.play_button {
+  background-color: #ff3d49;
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  right: 20px;
+  bottom: 111px;
+  font-size: 32px;
+  padding-left: 13px;
+  padding-top: 13px;
+  color: #ffffff;
+  cursor: pointer;
 }
-.credits .card-body i{
-    color: #8e24aa;
+
+.credits {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  border: 2px solid #8e24aa;
+  font-size: 18px;
+}
+.credits .card-body {
+  padding: 0;
+}
+.credits p {
+  padding-top: 15px;
+  padding-left: 18px;
+}
+.credits .card-body i {
+  color: #8e24aa;
 }
 .card-body {
-    padding: 1rem;
+  padding: 1rem;
 }
 
 .ant-pagination {
-    color: red;
+  color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .ant-pagination-item {
+    &.ant-pagination-item-active {
+      background-color: red;
+      border: 1px solid red;
+      color: white;
+    }
+    background-color: grey;
+    border: 1px solid grey;
+    margin: 0 4px;
+    width: 24px;
+    height: 24px;
     display: flex;
     justify-content: center;
     align-items: center;
-  
-    .ant-pagination-item {
-      &.ant-pagination-item-active {
-        background-color: red;
-        border: 1px solid red;
-        color: white;
-      }
-      background-color: grey;
-      border: 1px solid grey;
-      margin: 0 4px;
-      width: 24px;
-      height: 24px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: 50%;
-      cursor: pointer;
-  
-      a {
-        color: red;
-        visibility: hidden;
-      }
-    }
-  
-    .ant-pagination-jump-prev,
-    .ant-pagination-jump-next,
-    .ant-pagination-prev,
-    .ant-pagination-next {
-      .anticon {
-        color: red;
-      }
-    }
-  }
-  
-  .custom-button {
-    display: inline-block;
-    padding: 6px 8px;
-    font-size: 16px;
-    background-color: #dc2c29;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
+    border-radius: 50%;
     cursor: pointer;
-    position: relative;
-    overflow: hidden;
-  
-    i {
-      transition: transform 0.3s;
-    }
-  
-    &:hover i {
-      transform: scale(1.2);
-    }
-  
-    &:active {
-      background-color: #2980b9;
-      /* Màu nền khi click */
-    }
-  
-    &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: #c0392b;
-      transition: left 0.3s;
-      z-index: -1;
-    }
-  
-    &:hover::before {
-      left: 0;
+
+    a {
+      color: red;
+      visibility: hidden;
     }
   }
 
+  .ant-pagination-jump-prev,
+  .ant-pagination-jump-next,
+  .ant-pagination-prev,
+  .ant-pagination-next {
+    .anticon {
+      color: red;
+    }
+  }
+}
+
+.custom-button {
+  display: inline-block;
+  padding: 6px 8px;
+  font-size: 16px;
+  background-color: #dc2c29;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+
+  i {
+    transition: transform 0.3s;
+  }
+
+  &:hover i {
+    transform: scale(1.2);
+  }
+
+  &:active {
+    background-color: #2980b9;
+    /* Màu nền khi click */
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: #c0392b;
+    transition: left 0.3s;
+    z-index: -1;
+  }
+
+  &:hover::before {
+    left: 0;
+  }
+}
+
 .active {
-    background-color: #2980b9 !important;
+  background-color: #2980b9 !important;
 }
 button {
-    border-radius: 10px !important;
+  border-radius: 10px !important;
+}
+@media (max-width: "768px") {
+  .movie_card{
+    width: 14rem;
+  }
+  .movie_card img {
+    height: 16rem !important;
+  }
+  .play_button {
+    width: 45px !important;
+    height: 45px !important;
+    font-size: 25px !important;
+    padding-left: 9px !important;
+    padding-top: 7px !important;
+  }
+  .card-title {
+    width: 100% !important;
+    margin-bottom: 0.25rem;
+  }
 }

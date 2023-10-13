@@ -32,12 +32,12 @@ export default function Router() {
           element: <MovieDetail />,
         },
         {
-          path: "/movie-list",
-          element: <MovieList/>
+          path: "/booking/:id",
+          element: <AuthGuard><Booking /></AuthGuard>
         },
         {
-          path: "/booking/:id",
-          element: <Booking />
+          path: "/profile",
+          element: <UserProfile />
         }
       ]
     },

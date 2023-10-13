@@ -49,7 +49,6 @@
         padding-left: 0;
         margin-bottom: 0;
         list-style: none;
-        color: rgb(34, 34, 34);
         font-family: Verdana,Arial,sans-serif;
         font-weight: bold;
         line-height: 30px;
@@ -64,9 +63,8 @@
     .header-search {
         display: block;
         position: absolute;
-        top: 15px;
         right: 0;
-        width: 25%;
+        width: 35%;
         padding: 0;
         text-align: right;
         div {
@@ -75,6 +73,38 @@
         .header-search-left {
             position: relative;
             top: 15px;
+        }
+    }
+    .navbar-nav .nav-item a {
+        color: rgb(34, 34, 34);
+    }
+}
+@media (max-width: "768px") {
+    .header-search{
+        width: 45% !important;
+        .header-search-left{
+            img{
+                height: 38px;
+            }
+        }
+        .header-search-right{
+            img{
+                height: 55px;
+            }
+        }
+    }
+}
+@media (max-width: "568px") {
+    .header-search{
+        .header-search-left{
+            img{
+                height: 30px;
+            }
+        }
+        .header-search-right{
+            img{
+                height: 45px;
+            }
         }
     }
 }

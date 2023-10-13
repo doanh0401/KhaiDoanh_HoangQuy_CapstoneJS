@@ -123,7 +123,7 @@ export default function UserProfile() {
   return (
     <div className="profile-wrapper">
     <Container maxWidth="md">
-      <div className="card mt-5 border-5 pt-2 active pb-0 px-3">
+      <div className="card mt-5 border-5 pt-2 pb-0 px-3">
         <div className="card-header">
           <div className="row">
             <div className="col-12">
@@ -258,7 +258,7 @@ export default function UserProfile() {
                 </div>
               </div>
               <div className="text-right">
-                <button type="submit" className="btn btn-sm btn-userinfo">
+                <button type="submit" className="btn btn-sm btnUserInfo">
                   Update
                 </button>
               </div>

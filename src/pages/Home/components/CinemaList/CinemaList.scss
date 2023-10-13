@@ -214,3 +214,8 @@
     overflow-y: scroll;
     border-left: none;
 }
+@media (max-width: "718px") {
+  .cinemaContainer{
+    display: none !important;
+  }
+}
