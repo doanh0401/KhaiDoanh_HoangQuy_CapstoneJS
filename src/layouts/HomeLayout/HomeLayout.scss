@@ -1,6 +1,7 @@
 .wrapper {
     min-width: 320px;
     min-height: 100%;
+    text-align: center;
     margin: 0 auto;
     background: #fdfcf0;
     .mtw_banner_top {
@@ -9,9 +10,14 @@
         display: inline;
     };
     .mtw_banner_top_content {
-        width: 980px;
         margin: 0 auto;
         position: relative;
+
+        img{
+            width: 80%;
+            max-width: 980px;
+            height: 80px;
+        }
     };
     .header-language-background {
         height: 29px;
@@ -27,7 +33,7 @@
     .header-container {
         height: 29px;
         margin: 0 auto;
-        width: 980px;
+        width: 80%;
     }
     .header-language-right {
         text-align: right;
@@ -74,5 +80,31 @@
         left: -24px;
         top: -4px;
         height: 25px;
+    }
+
+}
+@media (max-width: 718px) {
+    img{
+        height: 55px;
+    }
+    .header-container{
+        .mn-newsoffer::before{
+            width: 18px !important;
+            background-size: 18px;
+        }
+        .mn-login::before {
+            width: 18px !important;
+            background-size: 18px;
+        }
+        .mn-myticket::before {
+            width: 18px !important;
+            background-size: 18px;
+        }
+        p{
+            font-size: 12px;
+        }
+        a {
+            font-size: 12px;
+        }
     }
 }
