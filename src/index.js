@@ -14,18 +14,6 @@ import { ConfigProvider } from "antd";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-
-//   <ConfigProvider theme={{
-//     token: {
-//         colorBgContainer: "white"
-//     }
-//   }}>
-//     <Provider store={store}>
-//       <App />
-//     </Provider>
-//   </ConfigProvider>
-
-
   
 <ConfigProvider>
 <Provider store={store}>

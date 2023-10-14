@@ -17,6 +17,7 @@ import Showtime from "../pages/Showtime/Showtime";
 import Addnew from "../pages/Film/AddNew/Addnew";
 import Edit from "../pages/Film/Edit/Edit";
 import Showtimes from "../pages/Film/Showtimes/Showtimes";
+import PageNotFound from "../pages/PageNotFound/PageNotFound";
 export default function Router() {
   const routing = useRoutes([
     {
@@ -40,6 +41,10 @@ export default function Router() {
           element: <UserProfile />
         }
       ]
+    },
+    {
+        path: "*",
+        element: <PageNotFound/>
     },
     {
       path: "/admin",
