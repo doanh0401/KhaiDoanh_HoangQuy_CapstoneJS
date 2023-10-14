@@ -33,5 +33,11 @@ class CinemaService {
       },
     });
   }
+  layDanhSachPhongVeApi(id){
+    return request({
+      url:`/QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=${id}`,
+      method:"GET"
+    })
+  }
 }
 export const cinemaService = new CinemaService();
