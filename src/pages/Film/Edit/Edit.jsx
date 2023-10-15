@@ -136,7 +136,7 @@ const Edit = () => {
         onValuesChange={onFormLayoutChange}
         size={componentSize}
         style={{
-          maxWidth: 600,
+          maxWidth: 800,
         }}
       >
         <h3 style={{ marginBottom: "20px" }}>Cập nhật phim</h3>

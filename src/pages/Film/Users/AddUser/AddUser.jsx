@@ -85,7 +85,7 @@ const AddUser = () => {
       onValuesChange={onFormLayoutChange}
       size={componentSize}
       style={{
-        maxWidth: 600,
+        maxWidth: 800,
       }}
       onSubmitCapture={formik.handleSubmit}
 

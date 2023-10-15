@@ -58,7 +58,7 @@ export default function Router() {
       children: [
         {
           path: "/admin",
-          element: <Film />,
+          element: <Users />,
         },
         {
           path: "/admin/users",

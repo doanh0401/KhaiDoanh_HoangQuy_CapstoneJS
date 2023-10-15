@@ -56,8 +56,7 @@ const EditUser = () => {
       for (let key in values) {
         formData.append(key, values[key]);
       }
-      console.log(formData);
-      dispatch(capNhatNguoiDung(formData));
+      dispatch(capNhatNguoiDung(values));
     },
   });
   const [userInfo, setUserInfo] = useState({
@@ -108,13 +107,13 @@ const EditUser = () => {
       onValuesChange={onFormLayoutChange}
       size={componentSize}
       style={{
-        maxWidth: 600,
+        maxWidth: 800,
       }}
       onSubmitCapture={formik.handleSubmit}
     >
       <h3 style={{ marginBottom: "20px" }}>Cập nhật người dùng</h3>
       <Form.Item label="Tài khoản">
-        <Input
+        <Input disabled
           name="taiKhoan"
           onChange={formik.handleChange}
           value={formik.values.taiKhoan}
