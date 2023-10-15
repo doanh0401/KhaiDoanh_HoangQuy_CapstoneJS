@@ -67,14 +67,19 @@ export default function User() {
     {
       title: "Thao tác",
       dataIndex: "soDT",
-      render: (text, film) => {
+      render: (_,user) => {
+        console.log(user);
         return (
           <Fragment>
-            <NavLink
+            <NavLink 
+              to={{
+              pathname: '/admin/edituser',
+              userprops: {user},
+            }}
               key={1}
               style={{ marginRight: "20px", fontSize: "30px", color: "blue" }}
             >
-              <EditOutlined />
+              <EditOutlined/>
             </NavLink>
             <span
               key={2}
