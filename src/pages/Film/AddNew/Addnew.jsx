@@ -100,7 +100,7 @@ const Addnew = () => {
     setComponentSize(size);
   };
   return (
-    <>
+    <> 
       <Form
         onSubmitCapture={formik.handleSubmit}
         labelCol={{

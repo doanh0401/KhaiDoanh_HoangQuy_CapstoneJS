@@ -102,10 +102,6 @@ export default function AdminLayout() {
               <NavLink to="/admin/film/addnew">Add New</NavLink>
             </Menu.Item>
           </SubMenu>
-
-          <Menu.Item key="3" icon={<DesktopOutlined />}>
-            <NavLink to="/admin/showtime">Showtime</NavLink>
-          </Menu.Item>
         </Menu>
       </Sider>
       <Layout>
