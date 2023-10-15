@@ -29,6 +29,31 @@ class UserService {
             data,
         })
     }
+    fetchUserListApi(id, hoTen=""){
+        if (hoTen.trim() != "") {
+            return request({
+                url:`QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=${id}&tuKhoa=${hoTen}`,
+                method:"GET"
+            })
+        }
+        return request({
+            url:`QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=${id}`,
+            method:"GET"
+        })
+    }
+    fetchAdduserApi(data){
+        return request({
+            url:`QuanLyNguoiDung/ThemNguoiDung`,
+            method:"POST",
+            data
+        })
+    }
+    maLoaiNguoiDungApi(){
+        return request({
+            url:`QuanLyNguoiDung/LayDanhSachLoaiNguoiDung`,
+            method:"GET",
+        })
+    }
 }
 
 export const userService = new UserService();

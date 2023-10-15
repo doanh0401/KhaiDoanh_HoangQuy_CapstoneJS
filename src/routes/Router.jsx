@@ -12,12 +12,13 @@ import AuthGuard from "../guards/AuthGuard";
 import AdminGuard from "../guards/AdminGuard";
 
 import Film from "../pages/Film/Film";
-import Users from "../pages/Users/Users";
+import Users from "../pages/Film/Users/Users";
 import Showtime from "../pages/Showtime/Showtime";
 import Addnew from "../pages/Film/AddNew/Addnew";
 import Edit from "../pages/Film/Edit/Edit";
 import Showtimes from "../pages/Film/Showtimes/Showtimes";
 import PageNotFound from "../pages/PageNotFound/PageNotFound";
+import AddUser from "../pages/Film/Users/AddUser/AddUser";
 export default function Router() {
   const routing = useRoutes([
     {
@@ -30,7 +31,7 @@ export default function Router() {
         },
         {
           path: "/movie-detail/:movieId",
-          element: <MovieDetail />,
+          element: <AuthGuard><MovieDetail /></AuthGuard>,
         },
         {
           path: "/booking/:id",
@@ -56,11 +57,15 @@ export default function Router() {
       children: [
         {
           path: "/admin",
-          element: <MovieManagement />,
+          element: <Film />,
         },
         {
           path: "/admin/users",
           element: <Users />,
+        },
+        {
+          path: "/admin/adduser",
+          element: <AddUser />,
         },
         {
           path: "/admin/film",
@@ -74,10 +79,10 @@ export default function Router() {
           path: "/admin/edit/:id",
           element: <Edit />,
         },
-        {
-          path: "/admin/showtime",
-          element: <Showtime />,
-        },
+        // {
+        //   path: "/admin/showtime",
+        //   element: <Showtime />,
+        // },
         {
           path: "/admin/showtimes/:id/:tenphim",
           element: <Showtimes />,

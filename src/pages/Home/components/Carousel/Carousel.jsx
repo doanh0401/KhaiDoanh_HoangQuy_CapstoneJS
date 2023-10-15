@@ -23,7 +23,7 @@ export default function Carousel() {
   };
 
   const fetchMovieList = async () => {
-    const result = await movieService.fecthMovieListApi("GP01");
+    const result = await movieService.fecthMovieListApi("GP08");
     setMovieList(result.data.content);
   };
 
