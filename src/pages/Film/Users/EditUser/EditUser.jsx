@@ -57,7 +57,7 @@ const EditUser = () => {
         formData.append(key, values[key]);
       }
       console.log(formData);
-      dispatch(capNhatNguoiDung(formData));
+      dispatch(capNhatNguoiDung(values));
     },
   });
   const [userInfo, setUserInfo] = useState({
@@ -65,6 +65,7 @@ const EditUser = () => {
   });
   const capNhatNguoiDung = async (formData) => {
     try {
+      console.log(formData);
       const result = await userService.fecthEditUserAdminApi(formData);
       alert("Cập nhật thành công!");
       console.log(result.data.content);
@@ -114,7 +115,7 @@ const EditUser = () => {
     >
       <h3 style={{ marginBottom: "20px" }}>Cập nhật người dùng</h3>
       <Form.Item label="Tài khoản">
-        <Input
+        <Input disabled
           name="taiKhoan"
           onChange={formik.handleChange}
           value={formik.values.taiKhoan}
