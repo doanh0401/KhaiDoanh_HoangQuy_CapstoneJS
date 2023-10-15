@@ -28,16 +28,16 @@ export default function User() {
     const result = await userService.fetchUserListApi("GP01", hoTen);
     setUsersList(result.data.content);
   };
-  //   const fetchDelete = async (id) => {
-  //     try {
-  //       const result = await adminService.xoaPhimApi(id);
-  //       alert("Xóa phim thành công!");
-  //       dispatch(fetchUsersList());
-  //       console.log(result.data.content);
-  //     } catch (errors) {
-  //       console.log("errors", errors.response?.data);
-  //     }
-  //   };
+    const fetchUserDelete = async (taikhoan) => {
+      try {
+        const result = await userService.fetchUserDeleteApi(taikhoan);
+        alert("Xóa thành công!");
+        dispatch(fetchUsersList());
+        console.log(result.data.content);
+      } catch (errors) {
+        console.log("errors", errors.response?.data);
+      }
+    };
   const columns = [
     {
       title: "Tài khoản",
@@ -66,16 +66,13 @@ export default function User() {
     },
     {
       title: "Thao tác",
-      dataIndex: "soDT",
+      dataIndex: "taiKhoan",
       render: (_,user) => {
         console.log(user);
         return (
           <Fragment>
             <NavLink 
-              to={{
-              pathname: '/admin/edituser',
-              userprops: {user},
-            }}
+             to ={`/admin/edituser/${user.taiKhoan}`}
               key={1}
               style={{ marginRight: "20px", fontSize: "30px", color: "blue" }}
             >
@@ -88,6 +85,11 @@ export default function User() {
                 fontSize: "30px",
                 color: "red",
                 cursor: "pointer",
+              }}
+              onClick={() => {
+                if (window.confirm("Bạn có chắc muốn xóa nguời dùng này không?")) {
+                  dispatch(fetchUserDelete(user.taiKhoan));
+                }
               }}
             >
               <DeleteOutlined />

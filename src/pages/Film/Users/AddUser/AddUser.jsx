@@ -23,7 +23,7 @@ const AddUser = () => {
     taiKhoan:Yup.string().required("Tài khoản không được để trống!"),
     matKhau:Yup.string().required("Mật khẩu không được để trống!"),
     email:Yup.string().required("Email không được để trống!").matches(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,"Vui lòng nhập đúng định dạng!"),
-    soDt:Yup.string().required("Giá vé không được để trống!").matches(/^[0-9]+$/,"Vui lòng nhậ đúng định dạng!"),
+    soDT:Yup.string().required("Giá vé không được để trống!").matches(/^[0-9]+$/,"Vui lòng nhậ đúng định dạng!"),
     hoTen: Yup.string().required("Họ tên không được để trống!").matches(/^[ aAàÀảẢãÃáÁạẠăĂằẰẳẲẵẴắẮặẶâÂầẦẩẨẫẪấẤậẬbBcCdDđĐeEèÈẻẺẽẼéÉẹẸêÊềỀểỂễỄếẾệỆfFgGhHiIìÌỉỈĩĨíÍịỊjJkKlLmMnNoOòÒỏỎõÕóÓọỌôÔồỒổỔỗỖốỐộỘơƠờỜởỞỡỠớỚợỢpPqQrRsStTuUùÙủỦũŨúÚụỤưƯừỪửỬữỮứỨựỰvVwWxXyYỳỲỷỶỹỸýÝỵỴzZ]+$/,"Vui lòng nhập đúng định dạng!"),
     maLoaiNguoiDung:Yup.string().required("Loại người dùng không được để trống!"),
 
@@ -33,7 +33,7 @@ const AddUser = () => {
       taiKhoan: "",
       matKhau: "",
       email: "",
-      soDt: "",
+      soDT: "",
       hoTen: "",
       maNhom: "GP01",
       maLoaiNguoiDung: "",
@@ -90,6 +90,7 @@ const AddUser = () => {
       onSubmitCapture={formik.handleSubmit}
 
     >
+      <h3 style={{ marginBottom: "20px" }}>Thêm người dùng</h3>
       <Form.Item label="Tài khoản">
         <Input name="taiKhoan" onChange={formik.handleChange} />
         {formik.errors.taiKhoan && formik.touched.taiKhoan && (
@@ -115,9 +116,9 @@ const AddUser = () => {
           )}
       </Form.Item>
       <Form.Item label="Số ĐT">
-        <Input name="soDt" onChange={formik.handleChange} />
-        {formik.errors.soDt && formik.touched.soDt && (
-            <span className='form-label text-danger'>{formik.errors.soDt}</span>
+        <Input name="soDT" onChange={formik.handleChange} />
+        {formik.errors.soDT && formik.touched.soDT && (
+            <span className='form-label text-danger'>{formik.errors.soDT}</span>
           )}
       </Form.Item>
       <Form.Item label="Loại người dùng">

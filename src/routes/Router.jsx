@@ -69,7 +69,7 @@ export default function Router() {
           element: <AddUser />,
         },
         {
-          path: "/admin/edituser",
+          path: "/admin/edituser/:taikhoan",
           element: <EditUser />
         },
         {
