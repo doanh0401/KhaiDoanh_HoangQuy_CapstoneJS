@@ -2,9 +2,9 @@ import React from "react";
 import "./navbar.scss"
 export default function Navbar() {
   return (
-    <nav class="page-header navbar navbar-expand-lg bg-dark navbar-dark">
-      <div class="page-header-container container">
-        <a class="navbar-brand" href="#">
+    <nav className="page-header navbar navbar-expand-lg bg-dark navbar-dark">
+      <div className="page-header-container container">
+        <a className="navbar-brand" href="#">
           <img src="././img/cgvlogo.png" alt="logo" />
         </a>
         <button
@@ -18,7 +18,7 @@ export default function Navbar() {
         >
           <span className="navbar-toggler-icon"> </span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <div className="collapse navbar-collapse" id="navbarNavDropdown">
         <ul className="navbar-nav">
       <li className="nav-item dropdown">
           <a className="nav-link dropdown-toggle" href="#" id="navbarDropMovieLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

@@ -15,7 +15,6 @@ export default function Showtime() {
     const result = await cinemaService.fetchShowtimeApi(param.movieId);
     setData(result.data.content);
   };
-  console.log(data);
   const renderTabList = () => {
     return data.heThongRapChieu?.map((htr, idx) => {
       return (

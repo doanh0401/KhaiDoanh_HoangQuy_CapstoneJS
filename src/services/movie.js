@@ -23,7 +23,7 @@ class MovieService {
   }
   fecthPageMovieListApi(page) {
     return axios({
-      url: `https://movienew.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhimPhanTrang?maNhom=GP01&soTrang=${page}&soPhanTuTrenTrang=8`,
+      url: `https://movienew.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhimPhanTrang?maNhom=GP08&soTrang=${page}&soPhanTuTrenTrang=8`,
       method: "GET",
       headers: {
         TokenCybersoft:
@@ -53,7 +53,7 @@ class MovieService {
   }
   fecthPageMovieListApi(page) {
     return axios({
-      url: `https://movienew.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhimPhanTrang?maNhom=GP01&soTrang=${page}&soPhanTuTrenTrang=10`,
+      url: `https://movienew.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhimPhanTrang?maNhom=GP08&soTrang=${page}&soPhanTuTrenTrang=10`,
       method: "GET",
       headers: {
         TokenCybersoft:

@@ -1,6 +1,33 @@
-.trailer{
-    border: none !important;
-    padding: 10px 50px !important;
-    font-weight: 600 !important;
-    font-size: 20px !important;
+.movieDetail {
+    p{
+        font-size: 1.5rem;
+        padding-bottom:20px;
+    }
+    .highlight {
+        font-weight: 600;
+    }
+    h4{
+        font-weight: 600 !important;
+    }
+    .trailer{
+        border: none;
+        padding: 10px 50px;
+        font-weight: 600;
+        font-size: 20px;
+    }
+}
+@media (max-width: "768px") {
+    .movieDetail {
+        p{
+            font-size: 1rem;
+            padding-bottom: 0;
+        }
+    }
+    button{
+        padding: 5px 20px!important;
+    }
+}
+img{
+    max-height: 500px;
+    max-width: 400px;
 }
