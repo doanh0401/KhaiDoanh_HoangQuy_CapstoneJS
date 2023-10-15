@@ -19,6 +19,7 @@ import Edit from "../pages/Film/Edit/Edit";
 import Showtimes from "../pages/Film/Showtimes/Showtimes";
 import PageNotFound from "../pages/PageNotFound/PageNotFound";
 import AddUser from "../pages/Film/Users/AddUser/AddUser";
+import EditUser from "../pages/Film/Users/EditUser/EditUser";
 export default function Router() {
   const routing = useRoutes([
     {
@@ -66,6 +67,10 @@ export default function Router() {
         {
           path: "/admin/adduser",
           element: <AddUser />,
+        },
+        {
+          path: "/admin/edituser",
+          element: <EditUser />
         },
         {
           path: "/admin/film",

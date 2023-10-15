@@ -54,6 +54,13 @@ class UserService {
             method:"GET",
         })
     }
+    fecthEditUserAdminApi(data) {
+        return request({
+          url: `/QuanLyNguoiDung/CapNhatThongTinNguoiDung`,
+          method: "POST",
+          data,
+        });
+    }
 }
 
 export const userService = new UserService();
