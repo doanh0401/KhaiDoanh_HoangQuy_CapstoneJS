@@ -61,6 +61,18 @@ class UserService {
           data,
         });
     }
+    fetchUserDetailApi(taiKhoan){
+        return request({
+            url:`QuanLyNguoiDung/LayThongTinNguoiDung?taiKhoan=${taiKhoan}`,
+            method:"POST",
+        })
+    }
+    fetchUserDeleteApi(taiKhoan){
+        return request({
+            url:`QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${taiKhoan}`,
+            method:"DELETE",
+        })
+    }
 }
 
 export const userService = new UserService();

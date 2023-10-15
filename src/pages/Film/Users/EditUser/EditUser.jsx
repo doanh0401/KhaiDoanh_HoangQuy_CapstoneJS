@@ -1,4 +1,4 @@
-import React, { createRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Button,
   Cascader,
@@ -11,142 +11,90 @@ import {
   Switch,
   TreeSelect,
 } from "antd";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
 import { userService } from "../../../../services/user";
-import { useLocation, useNavigate } from "react-router-dom";
-export default function EditUser() {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const taiKhoanInputRef = createRef();
-  const matKhauInputRef = createRef();
-  const emailInputRef = createRef();
-  const soDTInputRef = createRef();
-  const hoTenInputRef = createRef();
-  const loaiNguoiDungRef = createRef();
+import * as Yup from "yup";
+import { useNavigate, useParams } from "react-router-dom";
+import { SET_THONG_TIN_NGUOI_DUNG } from "../../../../store/types/adminType";
+
+const EditUser = () => {
+  const { taikhoan } = useParams();
+  const negative = useNavigate();
   const [componentSize, setComponentSize] = useState("default");
   const dispatch = useDispatch();
-  const [userInfo, setUserInfo] = useState({
-    taiKhoan: "13123",
-    matKhau: "13123abc@2910",
-    email: "violet123@gmail.com",
-    soDt: "012345678910",
-    hoTen: "VIOLETES",
-    maNhom: "GP01",
-    maLoaiNguoiDung: "KhachHang",
-  });
-
-  const handleChange = (event) => {
-    console.log(event.target.value);
-    setUserInfo({
-      // dynamic thông qua object literals
-      [event.target.name]: event.target.value,
-    });
+  const { thongTinNguoiDung } = useSelector((state) => state.adminReducer);
+  useEffect(() => {
+    fetchUserDetail();
+  }, []);
+  const fetchUserDetail = async () => {
+    try {
+      const result = await userService.fetchUserDetailApi(taikhoan);
+      dispatch({
+        type: SET_THONG_TIN_NGUOI_DUNG,
+        thongTinNguoiDung: result.data.content,
+      });
+    } catch (errors) {
+      console.log("errors", errors);
+    }
   };
 
-  const handleSubmit = () => {
-    let isValid = true;
-
-    isValid &=
-      validateRequired(
-        userInfo.matKhau,
-        matKhauInputRef.current,
-        "Chưa nhập mật khẩu"
-      ) &&
-      validateCheck(
-        userInfo.matKhau,
-        matKhauInputRef.current,
-        "Định dạng mật khẩu chưa đúng",
-        /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{0,}$/
-      );
-
-    isValid &=
-      validateRequired(
-        userInfo.soDt,
-        soDTInputRef.current,
-        "Chưa nhập số điện thoại"
-      ) &&
-      validateCheck(
-        userInfo.soDt,
-        soDTInputRef.current,
-        "Vui lòng nhập số",
-        /^[0-9]+$/
-      ) &&
-      validateCheckLength(
-        userInfo.soDt,
-        soDTInputRef.current,
-        "Số điện thoại có 10 số",
-        10
-      );
-
-    isValid &= validateRequired(
-      userInfo.hoTen,
-      hoTenInputRef.current,
-      "Chưa nhập họ tên"
-    );
-
-    isValid &= validateRequired(
-      userInfo.maLoaiNguoiDung,
-      loaiNguoiDungRef.current,
-      "Vui lòng chọn loại người dùng"
-    );
-    if (isValid) {
-        editUser(userInfo);
-        setUserInfo({
-          taiKhoan: "",
-          matKhau: "",
-          email: "",
-          soDT: "",
-          maNhom: "GP01",
-          hoTen: "",
-          maLoaiNguoiDung: "",
-        });
+  const formik = useFormik({
+    enableReinitialize: true,
+    initialValues: {
+      taiKhoan: thongTinNguoiDung?.taiKhoan,
+      matKhau: thongTinNguoiDung?.matKhau,
+      email: thongTinNguoiDung?.email,
+      soDT: thongTinNguoiDung?.soDT,
+      hoTen: thongTinNguoiDung?.hoTen,
+      maNhom: "GP01",
+      maLoaiNguoiDung: thongTinNguoiDung?.maLoaiNguoiDung,
+    },
+    onSubmit: (values) => {
+      console.log(values);
+      let formData = new FormData();
+      for (let key in values) {
+        formData.append(key, values[key]);
       }
-};
-
-  const editUser = async (state) => {
+      console.log(formData);
+      dispatch(capNhatNguoiDung(formData));
+    },
+  });
+  const [userInfo, setUserInfo] = useState({
+    maLoaiNguoiDung: [],
+  });
+  const capNhatNguoiDung = async (formData) => {
     try {
-      const result = await userService.fecthEditUserAdminApi(state);
-      alert("Cập nhật người dùng thành công!");
-      navigate("/admin/adduser");
+      const result = await userService.fecthEditUserAdminApi(formData);
+      alert("Cập nhật thành công!");
+      console.log(result.data.content);
+      negative("/admin/users");
     } catch (errors) {
       console.log(errors.response?.data);
     }
   };
-
-  const validateRequired = (value, ref, mes) => {
-    if (value !== "") {
-      ref.innerHTML = "";
-      return true;
+  const handleChangeNguoiDung = (name) => {
+    return (value) => {
+      formik.setFieldValue(name, value);
+    };
+  };
+  useEffect(() => {
+    maLoaiNguoiDung();
+  }, []);
+  const maLoaiNguoiDung = async () => {
+    try {
+      const result = await userService.maLoaiNguoiDungApi();
+      setUserInfo({ ...userInfo, maLoaiNguoiDung: result.data.content });
+    } catch (errors) {
+      console.log("errors", errors);
     }
-    ref.innerHTML = mes;
-    return false;
   };
 
-  const validateCheckLength = (value, ref, mes, number) => {
-    if (value.length === number) {
-      ref.innerHTML = "";
-      return true;
-    }
-    ref.innerHTML = mes;
-    return false;
-  };
-
-  const validateCheck = (value, ref, mes, letter) => {
-    if (letter.test(value)) {
-      ref.innerHTML = "";
-      return true;
-    }
-    ref.innerHTML = mes;
-    return false;
-  };
-  
   const onFormLayoutChange = ({ size }) => {
     setComponentSize(size);
   };
   return (
     <Form
-      onSubmitCapture={handleSubmit}
       labelCol={{
         span: 4,
       }}
@@ -162,49 +110,57 @@ export default function EditUser() {
       style={{
         maxWidth: 600,
       }}
+      onSubmitCapture={formik.handleSubmit}
     >
+      <h3 style={{ marginBottom: "20px" }}>Cập nhật người dùng</h3>
       <Form.Item label="Tài khoản">
-        <Input onChange={handleChange} name="taiKhoan" value={userInfo.taiKhoan} disabled/>
+        <Input
+          name="taiKhoan"
+          onChange={formik.handleChange}
+          value={formik.values.taiKhoan}
+        />
       </Form.Item>
       <Form.Item label="Mật khẩu">
-        <Input onChange={handleChange} name="matKhau" value={userInfo.matKhau}/>
-        <span className="text-danger" ref={matKhauInputRef}></span>
+        <Input
+          name="matKhau"
+          onChange={formik.handleChange}
+          value={formik.values.matKhau}
+        />
       </Form.Item>
       <Form.Item label="Họ tên">
-        <Input onChange={handleChange} name="hoTen" value={userInfo.hoTen}/>
-        <span className="text-danger" ref={hoTenInputRef}></span>
+        <Input
+          name="hoTen"
+          onChange={formik.handleChange}
+          value={formik.values.hoTen}
+        />
       </Form.Item>
       <Form.Item label="Email">
-        <Input onChange={handleChange} name="email" value={userInfo.email}/>
-        <span className="text-danger" ref={emailInputRef}></span>
+        <Input
+          name="email"
+          onChange={formik.handleChange}
+          value={formik.values.email}
+        />
       </Form.Item>
       <Form.Item label="Số ĐT">
-        <InputNumber onChange={handleChange} name="soDt"value={userInfo.soDt}/>
-        <span className="text-danger" ref={soDTInputRef}></span>
+        <Input
+          name="soDT"
+          onChange={formik.handleChange}
+          value={formik.values.soDT}
+        />
       </Form.Item>
-      <Form.Item label="Loại người dùng" value={userInfo.maLoaiNguoiDung}>
-      <span className="text-danger" ref={loaiNguoiDungRef}></span>
-      <Select
-      defaultValue={userInfo.maLoaiNguoiDung}
-      style={{
-        width: 120,
-      }}
-      onChange={handleChange}
-      options={[
-        {
-          value: 'KhachHang',
-          label: 'Khách hàng',
-        },
-        {
-          value: 'QuanTri',
-          label: 'QuanTri',
-        },
-      ]}
-    />
+      <Form.Item label="Loại người dùng">
+        <Select
+          value={formik.values.maLoaiNguoiDung}
+          options={userInfo.maLoaiNguoiDung?.map((mlnd, idx) => ({
+            label: mlnd.tenLoai,
+            value: mlnd.maLoaiNguoiDung,
+          }))}
+          onChange={handleChangeNguoiDung("maLoaiNguoiDung")}
+          placeholder="Chọn loại khách hàng"
+        />
       </Form.Item>
-
-      <button onClick={() => handleSubmit()} className="btn btn-success mr-2">Edit Người Dùng</button>
+      <button type="submit">Cập nhật</button>
     </Form>
   );
 };
-
+export default EditUser;
