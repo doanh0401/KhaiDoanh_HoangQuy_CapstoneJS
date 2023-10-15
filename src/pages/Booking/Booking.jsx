@@ -63,7 +63,7 @@ export default function Booking() {
             {element.tenGhe}
           </button>
 
-          {(idx + 1) % 16 === 0 && <br />}
+          {(idx + 1) % 10 === 0 && <br />}
         </React.Fragment>
       );
     });
@@ -136,38 +136,44 @@ export default function Booking() {
             </div>
           </div>
         </div>
-        <div className="col-8">
-          <hr className="screen" />
-          <h2 style={{ marginBottom: "3rem" }}>Screen this way</h2>
-          <div style={{ width: "95%" }} className="mx-auto">
-            {renderChairList()}
+      </div>
+      <div className="container">
+        <div className="row">
+          <div className="col-12 col-lg-8">
+            <hr className="screen" />
+            <h2 style={{ marginBottom: "3rem" }}>Screen this way</h2>
+            <div className="mx-auto">
+              {renderChairList()}
+            </div>
           </div>
-        </div>
-        <div className="col-4">
-          <Card
-            title={movieDetail.tenPhim}
-            bordered={false}
-            style={{
-              width: "90%",
-              textAlign: "left",
-              fontSize: 20,
-            }}
-          >
-            <p>Ngày chiếu giờ chiếu: {formatDate(cinema.ngayChieuGioChieu)}</p>
-            <p>Tên rạp: {cinema.tenRap}</p>
-            <p>Giá vé: Ghế thường: {cinema.giaVe}VND, Ghế vip: 90000VND</p>
-            <p>Thời lượng: {cinema.thoiLuong} phút</p>
-            <p>Ghế đã chọn: {renderSeatList()}</p>
-            <p>Tổng giá: {renderTotalPrice()}</p>
-
-            <button
-              style={{ width: "100%" }}
-              onClick={handleBookTicket}
-              className="btn btn-warning"
+          <div className="col-12 col-lg-4">
+            <Card
+              title={movieDetail.tenPhim}
+              bordered={false}
+              style={{
+                width: "90%",
+                textAlign: "left",
+                fontSize: 20,
+              }}
             >
-              BOOK
-            </button>
-          </Card>
+              <p>
+                Ngày chiếu giờ chiếu: {formatDate(cinema.ngayChieuGioChieu)}
+              </p>
+              <p>Tên rạp: {cinema.tenRap}</p>
+              <p>Giá vé: Ghế thường: {cinema.giaVe}VND, Ghế vip: 90000VND</p>
+              <p>Thời lượng: {cinema.thoiLuong} phút</p>
+              <p>Ghế đã chọn: {renderSeatList()}</p>
+              <p>Tổng giá: {renderTotalPrice()}</p>
+
+              <button
+                style={{ width: "100%" }}
+                onClick={handleBookTicket}
+                className="btn btn-warning"
+              >
+                BOOK
+              </button>
+            </Card>
+          </div>
         </div>
       </div>
     </div>
